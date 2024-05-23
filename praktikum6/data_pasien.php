@@ -1,9 +1,20 @@
 <?php 
-require_once 'koneksi.php';
-$query = "SELECT pasien.*, kelurahan.nama as nama_kelurahan
-            FROM pasien
-            LEFT JOIN kelurahan ON pasien.kelurahan_id = kelurahan.id_kelurahan";
-$pasiens = $dbh->query($query); ?>
+
+require_once './koneksi.php';
+
+$sql = 'SELECT * FROM pasien';
+$getPasien = $dbh->query($sql);
+
+
+// Periksa apakah terdapat baris yang dikembalikan dari query
+if ($getPasien) {
+    // Ambil semua baris dari hasil query sebagai array asosiatif
+    $pasiens = $getPasien->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Tangani jika query gagal
+    $pasiens = []; // Inisialisasi array kosong
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +48,7 @@ $pasiens = $dbh->query($query); ?>
                <td><?= $pasien['gender']; ?></td>
                <td><?= $pasien['tmp_lahir']; ?></td>
                <td><?= $pasien['tgl_lahir']; ?></td>
-               <td><?= $pasien['nama_kelurahan']; ?></td>
+               <td><?= $pasien['kelurahan_id']; ?></td>
                <td><a href="#" class="btn btn-primary">Edit</a>
                         <a href="#" class="btn btn-danger">Hapus</a></td>
             </tr>
