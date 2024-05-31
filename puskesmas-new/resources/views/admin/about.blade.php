@@ -1,3 +1,3 @@
 <x-layout>
-    <x-slot name="page_name"> Dashboard</x-slot>
+    <x-slot name="page_name">About</x-slot>
 </x-layout>
