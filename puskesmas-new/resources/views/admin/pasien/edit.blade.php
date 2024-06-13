@@ -1,8 +1,9 @@
 <x-layout>
-    <x-slot name="page_name">Halaman Pasien / Create</x-slot>
+    <x-slot name="page_name">Halaman Pasien / Edit</x-slot>
     <x-slot name="page_content">
-    <form class="forms-sample" action="{{ url('dashboard/pasien/store') }}" method="post">
+    <form class="forms-sample" action="{{ url('dashboard/pasien/update, $pasien->id') }}" method="post">
           @csrf
+          @method('put')
           <div class="form-group row">
               <label for="kode" class="col-sm-4 col-form-label">Kode</label>
               <div class="col-sm-8">
@@ -38,7 +39,7 @@
           <div class="form-group row">
               <label for="gender" class="col-sm-4 col-form-label">Gender</label>
               <div class="col-sm-8">
-                  <input type="radio button" class="form-control" id="gender" name="gender"
+                  <input type="select" class="form-control" id="gender" name="gender"
                       placeholder="Masukkan Gender">
               </div>
           </div>
